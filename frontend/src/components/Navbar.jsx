@@ -14,10 +14,9 @@ import {
   LogOut, 
   ChevronDown, 
   ShieldCheck, 
+  Sliders,
   Menu,
-  X,
-  Compass,
-  ArrowRight
+  X
 } from 'lucide-react';
 
 export default function Navbar() {
@@ -38,7 +37,7 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile drawer on route change
+  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
@@ -56,33 +55,32 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#070A12]/85 backdrop-blur-2xl transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-2xl transition-all shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
-        {/* Brand Logo & Navigation */}
+        {/* Brand Logo */}
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl blur-sm opacity-60 group-hover:opacity-100 transition duration-300" />
-              <div className="relative w-9 h-9 rounded-xl bg-slate-950 flex items-center justify-center border border-white/15 shadow-lg">
-                <Sparkles className="w-5 h-5 text-indigo-400 group-hover:rotate-12 transition-transform duration-300" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-xl blur-sm opacity-35 group-hover:opacity-75 transition duration-300" />
+              <div className="relative w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center border border-blue-200 shadow-sm">
+                <Sparkles className="w-5 h-5 text-blue-600 group-hover:rotate-12 transition-transform duration-300" />
               </div>
             </div>
             <div>
-              <span className="text-base font-black tracking-tight text-white flex items-center gap-1.5">
-                IntelliCart <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-gradient-to-r from-indigo-500/25 to-purple-500/25 text-indigo-300 border border-indigo-500/40 font-black uppercase tracking-wider font-mono">AI</span>
+              <span className="text-base font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
+                IntelliCart <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-violet-50 text-violet-700 border border-violet-200 font-bold uppercase tracking-wider">AI</span>
               </span>
-              <p className="text-[10px] text-slate-400 font-medium -mt-0.5 hidden sm:block">Autonomous AI Commerce Platform</p>
+              <p className="text-[10px] text-slate-500 font-medium -mt-0.5 hidden sm:block">Autonomous Commerce Growth Engine</p>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links for Customer */}
+          {/* Navigation Links for Customer */}
           {!isMerchantRoute && (
-            <nav className="hidden md:flex items-center gap-1 ml-4">
+            <nav className="hidden md:flex items-center gap-1 ml-3">
               <Link
                 to="/"
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                  location.pathname === '/' ? 'text-white bg-white/10 shadow-sm' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  location.pathname === '/' ? 'text-blue-600 bg-blue-50/80 border border-blue-100 shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
               >
                 Storefront
@@ -90,27 +88,27 @@ export default function Navbar() {
               <Link
                 to="/products"
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                  location.pathname === '/products' ? 'text-white bg-white/10 shadow-sm' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  location.pathname === '/products' ? 'text-blue-600 bg-blue-50/80 border border-blue-100 shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
               >
-                Catalog
+                Products
               </Link>
               <Link
                 to="/ai-shopping"
-                className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                className={`relative px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
                   location.pathname === '/ai-shopping'
-                    ? 'text-indigo-300 bg-indigo-950/80 border border-indigo-500/50 shadow-lg shadow-indigo-950/50'
-                    : 'text-indigo-400 hover:text-indigo-200 hover:bg-indigo-950/40 border border-indigo-900/50'
+                    ? 'text-violet-700 bg-violet-50 border border-violet-300 shadow-sm'
+                    : 'text-violet-600 hover:text-violet-700 hover:bg-violet-50/60 border border-violet-200'
                 }`}
               >
-                <Bot className="w-3.5 h-3.5 text-indigo-400" />
+                <Bot className="w-3.5 h-3.5 animate-pulse text-violet-600" />
                 <span>AI Shopper</span>
-                <span className="flex h-1.5 w-1.5 rounded-full bg-indigo-400 animate-ping" />
+                <span className="flex h-1.5 w-1.5 rounded-full bg-cyan-500 animate-ping" />
               </Link>
               <Link
                 to="/orders"
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                  location.pathname === '/orders' ? 'text-white bg-white/10 shadow-sm' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  location.pathname === '/orders' ? 'text-blue-600 bg-blue-50/80 border border-blue-100 shadow-sm' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
               >
                 Orders
@@ -119,122 +117,123 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Right Controls: Role Switcher & Profile & Cart */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Persona Switcher Pill */}
-          <div className="relative p-1 rounded-2xl bg-slate-950/80 border border-white/10 shadow-inner flex items-center gap-1">
+        {/* Right Controls: Role Switcher & Profile */}
+        <div className="flex items-center gap-2.5 sm:gap-3.5">
+          {/* Animated 1-Click Role Switcher Pill */}
+          <div className="relative p-1 rounded-2xl bg-slate-100 border border-slate-200 shadow-inner flex items-center gap-1">
             <button
               onClick={() => handleRoleToggle('customer')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all duration-300 ${
+              className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all duration-300 ${
                 role === 'customer'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-indigo-900/40'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-sm scale-100'
+                  : 'text-slate-600 hover:text-slate-900 scale-95'
               }`}
             >
               <Store className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Store</span>
+              <span className="hidden sm:inline">Customer Store</span>
             </button>
             <button
               onClick={() => handleRoleToggle('merchant')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all duration-300 ${
+              className={`px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all duration-300 ${
                 role === 'merchant'
-                  ? 'bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-600 text-white shadow-md shadow-purple-900/40'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-blue-600 via-cyan-600 to-cyan-700 text-white shadow-sm scale-100'
+                  : 'text-slate-600 hover:text-slate-900 scale-95'
               }`}
             >
               <TrendingUp className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Merchant</span>
+              <span className="hidden sm:inline">Merchant Engine</span>
             </button>
           </div>
 
-          {/* Customer Cart Button */}
+          {/* Customer Cart Icon */}
           {!isMerchantRoute && (
             <Link
               to="/cart"
-              className="relative p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 border border-white/10 transition-all"
-              title="Shopping Cart"
-              aria-label="Shopping Cart"
+              className="relative p-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-slate-100 border border-transparent hover:border-slate-200 transition-all"
+              title="View Cart"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-5 h-5" />
               {cartItemCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-[10px] font-black flex items-center justify-center border-2 border-slate-950 shadow-md shadow-indigo-600/40 animate-bounce">
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white shadow-sm animate-bounce">
                   {cartItemCount}
                 </span>
               )}
             </Link>
           )}
 
-          {/* User Profile Popover */}
+          {/* User Profile / Authentication Menu */}
           {user ? (
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center gap-2 pl-1.5 pr-2.5 py-1 rounded-xl bg-slate-900/90 border border-white/10 hover:border-indigo-500/50 text-xs text-slate-300 transition-all shadow-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className="flex items-center gap-2 pl-1.5 pr-2.5 py-1 rounded-xl bg-white border border-slate-200 hover:border-blue-400 text-xs text-slate-700 transition-all shadow-sm group cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-100"
                 aria-label="User profile menu"
               >
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center font-black text-[10px] shadow-sm">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 text-white flex items-center justify-center font-bold text-[10px] shadow-sm">
                   {user.name ? user.name[0].toUpperCase() : 'U'}
                 </div>
-                <div className="text-left hidden lg:block">
-                  <span className="font-semibold text-xs text-slate-200 block truncate max-w-[85px]">
+                <div className="text-left hidden md:block">
+                  <span className="font-semibold text-xs text-slate-800 group-hover:text-blue-600 block truncate max-w-[90px]">
                     {user.name}
                   </span>
                 </div>
-                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180 text-indigo-400' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180 text-blue-600' : ''}`} />
               </button>
 
               {/* User Dropdown Popover */}
               {isUserMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 rounded-2xl glass-panel-elevated border border-white/15 bg-[#090D18]/95 shadow-2xl p-3 space-y-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="p-3 rounded-xl bg-slate-950/80 border border-white/10">
+                <div className="absolute right-0 mt-2 w-64 rounded-2xl glass-panel border border-slate-200 bg-white/95 backdrop-blur-2xl shadow-xl p-3 space-y-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  {/* User Profile summary */}
+                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center font-black text-xs shadow-md">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">
                         {user.name ? user.name[0].toUpperCase() : 'U'}
                       </div>
                       <div className="overflow-hidden flex-1">
-                        <p className="text-xs font-bold text-white truncate">{user.name}</p>
-                        <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
+                        <p className="text-xs font-bold text-slate-900 truncate">{user.name}</p>
+                        <p className="text-[10px] text-slate-500 truncate">{user.email}</p>
                       </div>
                     </div>
-                    <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px]">
-                      <span className="text-slate-400">Persona Role</span>
-                      <span className={`px-2 py-0.5 rounded-full font-bold uppercase tracking-wider text-[9px] font-mono ${
+                    <div className="mt-2 pt-2 border-t border-slate-200 flex items-center justify-between text-[10px]">
+                      <span className="text-slate-500">Account Type</span>
+                      <span className={`px-2 py-0.5 rounded-full font-bold uppercase tracking-wider text-[9px] ${
                         user.role === 'merchant'
-                          ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                          : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
+                          ? 'bg-cyan-50 text-cyan-700 border border-cyan-200'
+                          : 'bg-blue-50 text-blue-700 border border-blue-200'
                       }`}>
                         {user.role}
                       </span>
                     </div>
                   </div>
 
+                  {/* Quick links */}
                   <div className="space-y-1 text-xs">
                     <Link
                       to="/profile"
                       onClick={() => setIsUserMenuOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                     >
-                      <User className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Account Profile & RFM</span>
+                      <User className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Account Profile</span>
                     </Link>
 
                     {user.role === 'merchant' ? (
                       <Link
                         to="/merchant/dashboard"
                         onClick={() => setIsUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                       >
-                        <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                        <span>Merchant Executive Console</span>
+                        <TrendingUp className="w-3.5 h-3.5 text-cyan-600" />
+                        <span>Merchant Dashboard</span>
                       </Link>
                     ) : (
                       <Link
                         to="/orders"
                         onClick={() => setIsUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                       >
-                        <Layers className="w-3.5 h-3.5 text-indigo-400" />
-                        <span>Order Ledger & Tracking</span>
+                        <Layers className="w-3.5 h-3.5 text-blue-600" />
+                        <span>My Orders</span>
                       </Link>
                     )}
 
@@ -243,20 +242,21 @@ export default function Navbar() {
                         setIsUserMenuOpen(false);
                         openAuthModal();
                       }}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors text-left cursor-pointer"
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors text-left cursor-pointer"
                     >
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Switch Persona</span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Switch / Re-Authenticate</span>
                     </button>
                   </div>
 
-                  <div className="pt-2 border-t border-white/10">
+                  {/* Sign out */}
+                  <div className="pt-2 border-t border-slate-200">
                     <button
                       onClick={() => {
                         setIsUserMenuOpen(false);
                         logout();
                       }}
-                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:text-white hover:bg-rose-500/20 border border-rose-500/20 transition-all cursor-pointer"
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-rose-200 transition-all cursor-pointer"
                     >
                       <LogOut className="w-3.5 h-3.5" />
                       <span>Sign Out</span>
@@ -266,84 +266,81 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <button
-              onClick={openAuthModal}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>Sign In</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={openAuthModal}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-xs shadow-md shadow-blue-600/20 transition-all cursor-pointer"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In</span>
+              </button>
+              <Link
+                to="/login"
+                className="hidden sm:inline-flex items-center text-xs text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Log in page
+              </Link>
+            </div>
           )}
 
-          {/* Mobile Drawer Hamburger Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 border border-white/10 transition-colors"
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile Menu Toggle Button */}
+          {!isMerchantRoute && (
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#070A12]/95 backdrop-blur-2xl px-4 pt-3 pb-5 space-y-3 animate-in slide-in-from-top duration-200">
-          <nav className="space-y-1">
-            <Link
-              to="/"
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
-                location.pathname === '/' ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>Storefront</span>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-            </Link>
-            <Link
-              to="/products"
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
-                location.pathname === '/products' ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>Hardware Catalog</span>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-            </Link>
-            <Link
-              to="/ai-shopping"
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold ${
-                location.pathname === '/ai-shopping'
-                  ? 'bg-indigo-950/80 text-indigo-300 border border-indigo-500/40'
-                  : 'text-indigo-400 hover:bg-indigo-950/30'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Bot className="w-4 h-4" />
-                <span>AI Shopping Copilot</span>
-              </div>
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
-            </Link>
-            <Link
-              to="/orders"
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
-                location.pathname === '/orders' ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>Orders Ledger</span>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-            </Link>
-            <Link
-              to="/cart"
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
-                location.pathname === '/cart' ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span>Cart ({cartItemCount} items)</span>
-              <ShoppingBag className="w-3.5 h-3.5 text-slate-400" />
-            </Link>
-          </nav>
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && !isMerchantRoute && (
+        <div className="md:hidden px-4 pt-2 pb-4 border-t border-slate-200 bg-white/95 backdrop-blur-2xl space-y-2 animate-in fade-in slide-in-from-top-2">
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold ${
+              location.pathname === '/' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Store className="w-4 h-4" />
+            <span>Storefront</span>
+          </Link>
+          <Link
+            to="/products"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold ${
+              location.pathname === '/products' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span>Products</span>
+          </Link>
+          <Link
+            to="/ai-shopping"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold ${
+              location.pathname === '/ai-shopping' ? 'bg-blue-600 text-white' : 'text-blue-600 hover:bg-slate-100'
+            }`}
+          >
+            <Bot className="w-4 h-4" />
+            <span>AI Shopper Assistant</span>
+          </Link>
+          <Link
+            to="/orders"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold ${
+              location.pathname === '/orders' ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <ShieldCheck className="w-4 h-4" />
+            <span>My Orders & Tracking</span>
+          </Link>
         </div>
       )}
     </header>
   );
 }
-

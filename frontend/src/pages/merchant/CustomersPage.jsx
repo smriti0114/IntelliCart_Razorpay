@@ -38,18 +38,18 @@ export default function CustomersPage() {
     <div className="space-y-8">
       <div>
         <div className="flex items-center gap-2 mb-1">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-indigo-400" /> K-Means ML Clustering
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-violet-700 border border-blue-200 flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-blue-600" /> K-Means ML Clustering
           </span>
-          <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-radar" /> 5 Clusters Synced
+          <span className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-radar" /> 5 Clusters Synced
           </span>
         </div>
-        <h1 className="text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
-          <Users className="w-6 h-6 text-indigo-400" />
+        <h1 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+          <Users className="w-6 h-6 text-blue-600" />
           Customer Intelligence & K-Means Segmentation
         </h1>
-        <p className="text-xs text-slate-400 mt-0.5">
+        <p className="text-xs text-slate-500 mt-0.5">
           Machine learning clustering into 5 actionable segments based on Recency, Frequency, Monetary spend & behavioral intent
         </p>
       </div>
@@ -62,24 +62,24 @@ export default function CustomersPage() {
             <div
               key={seg.id}
               onClick={() => setSelectedSegment(isSelected ? 'All' : seg.segment_name)}
-              className={`p-4 rounded-2xl border cursor-pointer transition-all duration-300 space-y-2 relative overflow-hidden group ${
+              className={`p-4 rounded-2xl border cursor-pointer transition-all duration-300 space-y-2 relative overflow-hidden group shadow-sm ${
                 isSelected
-                  ? 'bg-purple-950/40 border-purple-500 text-white shadow-xl shadow-purple-950/30 glow-purple ring-1 ring-purple-500/50'
-                  : 'glass-panel text-slate-300 hover:border-slate-700 hover:bg-slate-900/90'
+                  ? 'bg-blue-50/80 border-blue-500 text-slate-900 ring-2 ring-blue-200 shadow-md'
+                  : 'card-premium text-slate-700 hover:border-slate-300 hover:bg-slate-50'
               }`}
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-white group-hover:text-purple-300 transition-colors">
+                <h3 className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                   {seg.segment_name}
                 </h3>
-                <span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-950/80 text-slate-300 font-mono border border-slate-800">
+                <span className="text-[10px] px-2 py-0.5 rounded-md bg-white text-slate-700 font-mono border border-slate-200">
                   {seg.customer_count}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">{seg.description}</p>
-              <div className="pt-2 border-t border-slate-800/80 text-[11px] flex justify-between items-center text-slate-400">
+              <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">{seg.description}</p>
+              <div className="pt-2 border-t border-slate-100 text-[11px] flex justify-between items-center text-slate-600">
                 <span>Avg AOV:</span>
-                <span className="font-bold text-indigo-300 font-mono">₹{Number(seg.avg_aov).toLocaleString('en-IN')}</span>
+                <span className="font-bold text-blue-600 font-mono">₹{Number(seg.avg_aov).toLocaleString('en-IN')}</span>
               </div>
             </div>
           );
@@ -87,18 +87,18 @@ export default function CustomersPage() {
       </div>
 
       {/* Customer Ledger Table */}
-      <div className="p-6 rounded-3xl glass-panel border border-slate-800 space-y-4 shadow-2xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
+      <div className="p-6 rounded-3xl card-premium space-y-4 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
           <div className="flex items-center gap-2.5">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+            <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
               Customer Profiles Ledger ({customers.length} Loaded)
             </h3>
             {selectedSegment !== 'All' && (
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 font-semibold flex items-center gap-1.5">
+              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-50 text-violet-700 border border-blue-200 font-semibold flex items-center gap-1.5">
                 Filtered: {selectedSegment}
                 <button
                   onClick={() => setSelectedSegment('All')}
-                  className="hover:text-white font-bold ml-1 text-slate-400"
+                  className="hover:text-blue-900 font-bold ml-1 text-slate-400 cursor-pointer"
                 >
                   ✕
                 </button>
@@ -113,15 +113,15 @@ export default function CustomersPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, email, phone..."
-              className="w-full pl-9 pr-3 py-2 text-xs bg-slate-950/80 border border-slate-700 text-white rounded-xl focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-white border border-slate-300 text-slate-900 placeholder-slate-400 rounded-xl focus:outline-none focus:border-blue-500 transition-colors shadow-inner"
             />
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-slate-800/80">
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/60">
-              <tr className="border-b border-slate-800 text-slate-400 text-[11px]">
+            <thead className="bg-slate-50">
+              <tr className="border-b border-slate-200 text-slate-600 text-[11px]">
                 <th className="py-3 px-4 font-semibold">Customer</th>
                 <th className="py-3 px-4 font-semibold">Segment</th>
                 <th className="py-3 px-4 font-semibold">Recency</th>
@@ -132,40 +132,57 @@ export default function CustomersPage() {
                 <th className="py-3 px-4 font-semibold">Discount Sens.</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50 bg-slate-900/40">
-              {customers.map((c) => (
-                <tr key={c.id} className="hover:bg-indigo-950/20 transition-colors">
-                  <td className="py-3 px-4">
-                    <span className="font-semibold text-white block">{c.name}</span>
-                    <span className="text-[11px] text-slate-500 font-mono">{c.email}</span>
-                  </td>
-                  <td className="py-3 px-4">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30">
-                      {c.segment}
-                    </span>
-                  </td>
-                  <td className="py-3 px-4 text-slate-400 font-mono text-[11px]">{c.rfm_recency}d ago</td>
-                  <td className="py-3 px-4 text-slate-300 font-mono font-medium">{c.rfm_frequency}</td>
-                  <td className="py-3 px-4 font-semibold text-emerald-400 font-mono">
-                    ₹{Number(c.rfm_monetary).toLocaleString('en-IN')}
-                  </td>
-                  <td className="py-3 px-4 text-slate-300 font-mono">₹{Number(c.aov).toLocaleString('en-IN')}</td>
-                  <td className="py-3 px-4 font-bold text-indigo-300 font-mono">₹{Number(c.clv).toLocaleString('en-IN')}</td>
-                  <td className="py-3 px-4">
-                    <span
-                      className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-md border ${
-                        c.discount_sensitivity === 'High'
-                          ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
-                          : c.discount_sensitivity === 'Medium'
-                          ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
-                          : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                      }`}
-                    >
-                      {c.discount_sensitivity}
-                    </span>
+            <tbody className="divide-y divide-slate-100 bg-white">
+              {loading ? (
+                <tr>
+                  <td colSpan="8" className="py-8 text-center text-slate-500">
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
+                      <span>Loading customer intelligence records...</span>
+                    </div>
                   </td>
                 </tr>
-              ))}
+              ) : customers.length === 0 ? (
+                <tr>
+                  <td colSpan="8" className="py-8 text-center text-slate-500">
+                    No customer records found matching the query.
+                  </td>
+                </tr>
+              ) : (
+                customers.map((c) => (
+                  <tr key={c.id} className="hover:bg-blue-50/40 transition-colors">
+                    <td className="py-3 px-4">
+                      <span className="font-semibold text-slate-900 block">{c.name}</span>
+                      <span className="text-[11px] text-slate-400 font-mono">{c.email}</span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-violet-700 border border-blue-200">
+                        {c.segment}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-slate-500 font-mono text-[11px]">{c.rfm_recency}d ago</td>
+                    <td className="py-3 px-4 text-slate-700 font-mono font-medium">{c.rfm_frequency}</td>
+                    <td className="py-3 px-4 font-semibold text-emerald-600 font-mono">
+                      ₹{Number(c.rfm_monetary).toLocaleString('en-IN')}
+                    </td>
+                    <td className="py-3 px-4 text-slate-700 font-mono">₹{Number(c.aov).toLocaleString('en-IN')}</td>
+                    <td className="py-3 px-4 font-bold text-blue-600 font-mono">₹{Number(c.clv).toLocaleString('en-IN')}</td>
+                    <td className="py-3 px-4">
+                      <span
+                        className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-md border ${
+                          c.discount_sensitivity === 'High'
+                            ? 'bg-rose-50 text-rose-700 border-rose-200'
+                            : c.discount_sensitivity === 'Medium'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200'
+                            : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        }`}
+                      >
+                        {c.discount_sensitivity}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
