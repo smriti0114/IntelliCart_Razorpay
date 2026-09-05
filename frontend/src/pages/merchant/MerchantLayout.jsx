@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { 
   LayoutDashboard, Users, Package, ShoppingCart, CreditCard, 
-  TrendingUp, FlaskConical, Sparkles, Settings, ArrowUpRight
+  TrendingUp, FlaskConical, Sparkles, Settings, ArrowUpRight,
+  Menu, X, Shield, Activity
 } from 'lucide-react';
 
 export default function MerchantLayout() {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { label: 'Executive Dashboard', path: '/merchant/dashboard', icon: LayoutDashboard },
@@ -22,17 +24,44 @@ export default function MerchantLayout() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col md:flex-row">
+      {/* Mobile Top Header */}
+      <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950/90 backdrop-blur-xl sticky top-16 z-30">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+          <span className="text-xs font-black text-white tracking-tight uppercase">Merchant Console</span>
+        </div>
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white cursor-pointer"
+        >
+          {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Backdrop */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30 top-28"
+        />
+      )}
+
       {/* Merchant Sidebar */}
-      <aside className="w-full md:w-64 glass-panel border-r border-slate-800/80 p-4 space-y-6 shrink-0 md:min-h-screen flex flex-col justify-between">
+      <aside
+        className={`w-full md:w-64 glass-panel border-r border-slate-800/80 p-4 space-y-6 shrink-0 md:min-h-screen flex flex-col justify-between transition-all duration-300 ${
+          mobileMenuOpen ? 'block' : 'hidden md:flex'
+        }`}
+      >
         <div className="space-y-5">
           <div className="px-2 py-1">
-            <div className="flex items-center gap-1.5 mb-0.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+            <div className="flex items-center gap-1.5 mb-1">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-radar" />
               <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest block">
                 Merchant Operations
               </span>
             </div>
-            <h2 className="text-sm font-black text-white tracking-tight">Growth Engine Console</h2>
+            <h2 className="text-sm font-black text-white tracking-tight">AI Commerce Console</h2>
+            <p className="text-[11px] text-slate-400 mt-0.5">Automated Intelligence & Settlement</p>
           </div>
 
           <nav className="space-y-1">
@@ -44,6 +73,7 @@ export default function MerchantLayout() {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                     isActive
                       ? 'bg-purple-600/15 text-purple-300 border-l-2 border-l-purple-400 border-y border-r border-purple-500/30 font-semibold shadow-md shadow-purple-950/20'

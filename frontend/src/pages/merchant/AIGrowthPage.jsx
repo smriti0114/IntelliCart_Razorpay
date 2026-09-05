@@ -299,12 +299,12 @@ export default function AIGrowthPage() {
               <h3 className="text-xs font-bold text-white uppercase tracking-wider">
                 Merchant Diagnostic AI Assistant
               </h3>
-              <p className="text-xs text-slate-400">Ask data-backed questions grounded directly in real PostgreSQL transactions</p>
+              <p className="text-xs text-slate-400">Ask data-backed questions grounded directly in real transactional telemetry</p>
             </div>
           </div>
 
           <span className="hidden sm:flex items-center gap-1.5 text-[10px] font-semibold text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">
-            <Sparkles className="w-3 h-3 text-purple-400" /> RAG & SQL Diagnostic Mode
+            <Sparkles className="w-3 h-3 text-purple-400" /> RAG & Telemetry Diagnostic Mode
           </span>
         </div>
 
@@ -316,12 +316,12 @@ export default function AIGrowthPage() {
               value={merchantQuestion}
               onChange={(e) => setMerchantQuestion(e.target.value)}
               placeholder="Ask: 'Why did revenue fall this week?' or 'How can I increase revenue by 10%?'"
-              className="flex-1 px-4 py-3 text-xs bg-slate-950/80 border border-slate-700 text-white rounded-xl focus:outline-none focus:border-purple-500 transition-colors"
+              className="flex-1 px-4 py-3 text-xs bg-slate-950/80 border border-slate-700 text-white rounded-xl focus:outline-none focus:border-purple-500 transition-colors shadow-inner"
             />
             <button
               type="submit"
               disabled={isAsking || !merchantQuestion.trim()}
-              className="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md shrink-0"
+              className="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md shrink-0 cursor-pointer disabled:opacity-50"
             >
               {isAsking ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               <span>Ask Agent</span>
@@ -338,7 +338,7 @@ export default function AIGrowthPage() {
               <button
                 key={i}
                 onClick={() => setMerchantQuestion(preset)}
-                className="px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-[11px] border border-slate-800 transition-all"
+                className="px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-[11px] border border-slate-800 transition-all cursor-pointer"
               >
                 {preset}
               </button>
