@@ -1,0 +1,81 @@
+{
+  "model_a": {
+    "name": "Random Forest Purchase Probability Classifier",
+    "model_type": "RandomForestClassifier",
+    "n_estimators": 150,
+    "train_samples": 1200,
+    "test_samples": 300,
+    "precision": 0.9718,
+    "recall": 0.9367,
+    "f1_score": 0.9539,
+    "roc_auc": 0.9864,
+    "confusion_matrix": [
+      [
+        73,
+        6
+      ],
+      [
+        14,
+        207
+      ]
+    ],
+    "feature_importances": {
+      "product_views": 0.0552,
+      "searches": 0.0263,
+      "cart_additions": 0.2718,
+      "conversion_intent": 0.5075,
+      "previous_orders": 0.0289,
+      "average_order_value": 0.0319,
+      "total_spend": 0.0337,
+      "customer_type_encoded": 0.0447
+    }
+  },
+  "model_b": {
+    "name": "K-Means Customer Segmentation Engine",
+    "n_clusters": 5,
+    "cluster_map": {
+      "4": "High-Value",
+      "1": "Loyal",
+      "2": "Regular",
+      "0": "Discount-Sensitive",
+      "3": "At-Risk"
+    },
+    "segments": {
+      "High-Value": {
+        "customer_count": 285,
+        "pct_of_base": 19.0,
+        "avg_aov": 49960,
+        "avg_orders": 5.7,
+        "avg_total_spend": 278092
+      },
+      "Loyal": {
+        "customer_count": 415,
+        "pct_of_base": 27.7,
+        "avg_aov": 48351,
+        "avg_orders": 2.7,
+        "avg_total_spend": 125482
+      },
+      "Regular": {
+        "customer_count": 279,
+        "pct_of_base": 18.6,
+        "avg_aov": 24969,
+        "avg_orders": 5.0,
+        "avg_total_spend": 123283
+      },
+      "Discount-Sensitive": {
+        "customer_count": 142,
+        "pct_of_base": 9.5,
+        "avg_aov": 37421,
+        "avg_orders": 2.9,
+        "avg_total_spend": 106435
+      },
+      "At-Risk": {
+        "customer_count": 379,
+        "pct_of_base": 25.3,
+        "avg_aov": 25894,
+        "avg_orders": 1.9,
+        "avg_total_spend": 45344
+      }
+    }
+  }
+}
